@@ -1,0 +1,129 @@
+/* ===== APP LAYOUT ===== */
+.app-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ===== JOIN CARD ===== */
+.join-card {
+  background: rgba(255,255,255,0.12);
+  padding: 40px 50px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+}
+
+.join-card h1 {
+  margin-bottom: 25px;
+}
+
+/* ===== INPUT ===== */
+.username-input {
+  width: 240px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+/* ===== BUTTON ===== */
+.primary-btn {
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffd200, #f7971e);
+  transition: transform 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== GAME HEADER ===== */
+.game-header {
+  text-align: center;
+  opacity: 0.9;
+}
+
+.turn-indicator {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* ===== GAME OVER MODAL ===== */
+.game-over-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.game-over-card {
+  background: rgba(255,255,255,0.15);
+  padding: 35px 45px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.7);
+}
+
+.waiting-box {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.12);
+  font-size: 14px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.secondary-btn {
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: auto 320px;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+/* Leaderboard spacing fix */
+.leaderboard {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  padding: 22px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}

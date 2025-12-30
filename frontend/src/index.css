@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2, h3 {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-right: 10px;
+  outline: none;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #ffcc00;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffdd33;
+}
+
+.board-wrapper {
+  margin-top: 20px;
+}
+
+.column-buttons {
+  display: flex;
+}
+
+.column-buttons button {
+  width: 60px;
+  background: transparent;
+  color: white;
+  font-size: 20px;
+}
+
+.column-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.board {
+  background: #0b3c91;
+  padding: 10px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 5px;
+  background: #e0e0e0;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.cell.red {
+  background: radial-gradient(circle at top, #ff6b6b, #c0392b);
+}
+
+.cell.black {
+  background: radial-gradient(circle at top, #555, #000);
+}
+
+/* GAME OVER MODAL */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal button {
+  margin-top: 15px;
+}

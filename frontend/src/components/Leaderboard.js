@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const Leaderboard = () => {
 const [data, setData] = useState([]);
 useEffect(() => {
-fetch("http://localhost:5000/api/leaderboard")
+fetch("https://four-in-a-row-xlwv.onrender.com/api/leaderboard")
 
   .then(res => res.json())
 

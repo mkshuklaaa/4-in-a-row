@@ -2,13 +2,14 @@ const {
   waitingQueue,
   activeGames,
   userToGame,
-  createGame
+  createGame,
 } = require("../game/gameManager");
 
 const { BOT_NAME, botMove } = require("../game/bot");
 const { checkWin } = require("../game/winChecker");
 const Game = require("../models/Game");
 const User = require("../models/User");
+const { sendGameEvent } = require("../kafka/producer");
 
 // 🔥 Track bot fallback timers to avoid race conditions
 const botTimeouts = new Map(); // username -> timeoutId
@@ -43,8 +44,9 @@ module.exports = (io) => {
 
       // 🧍‍♂️ PvP MATCH FOUND
       if (waitingQueue.size > 0) {
-        const [opponentName, opponentSocket] =
-          waitingQueue.entries().next().value;
+        const [opponentName, opponentSocket] = waitingQueue
+          .entries()
+          .next().value;
 
         waitingQueue.delete(opponentName);
 
@@ -106,13 +108,13 @@ module.exports = (io) => {
         return;
       }
 
-      if (game.board.every(col => col.every(cell => cell !== 0))) {
+      if (game.board.every((col) => col.every((cell) => cell !== 0))) {
         await finishGame(io, game, "DRAW");
         return;
       }
 
       // 🔁 SWITCH TURN
-      const opponent = game.players.find(p => p !== player);
+      const opponent = game.players.find((p) => p !== player);
       game.currentTurn = opponent;
 
       io.to(game.gameId).emit("BOARD_UPDATE", game);
@@ -156,12 +158,22 @@ module.exports = (io) => {
 async function finishGame(io, game, winner) {
   game.status = "FINISHED";
 
+  const { sendGameFinished } = require("../kafka/producer");
+
+  await sendGameFinished({
+    type: "GAME_FINISHED",
+    gameId: game.gameId,
+    winner,
+    duration: Math.floor((Date.now() - game.createdAt) / 1000),
+    timestamp: Date.now(),
+  });
+
   await Game.create({
     gameId: game.gameId,
     players: game.players,
     winner,
-    movesCount: game.board.flat().filter(v => v !== 0).length,
-    duration: Math.floor((Date.now() - game.createdAt) / 1000)
+    movesCount: game.board.flat().filter((v) => v !== 0).length,
+    duration: Math.floor((Date.now() - game.createdAt) / 1000),
   });
 
   if (winner !== "DRAW") {
@@ -172,8 +184,10 @@ async function finishGame(io, game, winner) {
     );
   }
 
-  game.players.forEach(p => userToGame.delete(p));
+  game.players.forEach((p) => userToGame.delete(p));
   activeGames.delete(game.gameId);
 
   io.to(game.gameId).emit("GAME_END", { winner });
 }
+
+

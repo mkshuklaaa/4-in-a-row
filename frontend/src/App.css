@@ -127,3 +127,123 @@
   border-radius: 20px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
+
+/* ================= BOARD WRAPPER ================= */
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ================= BOARD GRID ================= */
+
+.board-grid-full {
+  display: grid;
+  grid-template-columns: repeat(7, 56px);
+  grid-template-rows: 30px repeat(6, 56px);
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(
+    180deg,
+    #0f3d75,
+    #0a2a52
+  );
+  border-radius: 20px;
+  box-shadow: inset 0 6px 12px rgba(255,255,255,0.15),
+              0 25px 45px rgba(0,0,0,0.45);
+}
+
+/* ================= COLUMN ARROWS ================= */
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #ffd86b;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.arrow-btn:hover {
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* ================= CELLS ================= */
+
+.cell {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f5f7fa, #cfd9df);
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* ================= PLAYER COLORS ================= */
+
+.cell.green {
+  background: radial-gradient(circle at 30% 30%, #6dffb3, #1fa463);
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.35),
+              0 0 10px rgba(46,204,113,0.6);
+}
+
+.cell.red {
+  background: radial-gradient(circle at 30% 30%, #ff8a8a, #c0392b);
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.35),
+              0 0 10px rgba(231,76,60,0.6);
+}
+
+.cell.black {
+  background: radial-gradient(circle at 30% 30%, #555, #000);
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.6);
+}
+
+/* ================= DROP EFFECT ================= */
+
+.cell.green,
+.cell.red,
+.cell.black {
+  animation: drop 0.25s ease-out;
+}
+
+@keyframes drop {
+  from {
+    transform: translateY(-12px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================= PLAYER LEGEND ================= */
+
+.player-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.legend-dot.green { background: #2ecc71; }
+.legend-dot.red { background: #e74c3c; }
+.legend-dot.black { background: #000; }
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+  .board-grid-full {
+    transform: scale(0.9);
+  }
+}

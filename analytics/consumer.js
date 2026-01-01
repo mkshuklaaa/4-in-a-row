@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 const { Kafka } = require("kafkajs");
 
-mongoose.connect(
-  "mongodb+srv://dbUser:qwerty1234@database.lzcqiml.mongodb.net/?appName=Database"
-);
+mongoose.connect(process.env.MONGO_URI);
 
 const Analytics = mongoose.model(
   "Analytics",
@@ -18,7 +16,7 @@ const Analytics = mongoose.model(
 
 const kafka = new Kafka({
   clientId: "analytics-service",
-  brokers: ["localhost:9092"]
+  brokers: [process.env.KAFKA_BROKER]
 });
 
 const consumer = kafka.consumer({ groupId: "analytics-group" });

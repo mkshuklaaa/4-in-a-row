@@ -1,7 +1,4 @@
 import { io } from "socket.io-client";
 
-const socket = io("https://four-in-a-row-xlwv.onrender.com");
-fetch("https://four-in-a-row-xlwv.onrender.com/api/leaderboard")
-fetch("https://four-in-a-row-xlwv.onrender.com/api/analytics")
-
+const socket = io("https://real-time-multiplayer-game-xzyn.onrender.com");
 export default socket;

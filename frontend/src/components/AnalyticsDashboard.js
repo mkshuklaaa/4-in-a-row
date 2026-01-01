@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const AnalyticsDashboard = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("https://four-in-a-row-xlwv.onrender.com/api/analytics")
+    fetch("https://real-time-multiplayer-game-xzyn.onrender.com/api/analytics")
       .then((res) => res.json())
 
       .then(setData);
